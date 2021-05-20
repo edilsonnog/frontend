@@ -6,31 +6,46 @@ import "./styles.css";
 
 function Register() {
 
-  const [email, setEmail] = useState({});
+  const [usuario, setUsuario] = useState({});
+
+  function handleChange(e) {
+    setUsuario({
+      ...usuario, 
+      [e.target.name]: e.target.value
+    })
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    api.post('/users', usuario)
+    .then(response => {
+      console.log(response);
+    })
+  }
 
   return (
     <div className="container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Cadastro de Usuário</h2>
         <div className="row">
           <span>Nome</span>
-          <input type="text" />
+          <input type="text" name="name" onChange={handleChange} />
         </div>
         <div className="row">
           <span>E-mail</span>
-          <input type="text" />
+          <input type="text" name="email" onChange={handleChange} />
         </div>
         <div className="row">
           <span>Username</span>
-          <input type="text" />
+          <input type="text" name="username" onChange={handleChange} />
         </div>
         <div className="row">
           <span>Password</span>
-          <input type="text" />
+          <input type="password" name="password" onChange={handleChange} />
         </div>
         <div className="row">
           <span>Telefone</span>
-          <input type="text" />
+          <input type="text" name="phone" onChange={handleChange} />
         </div>
 
         <div className="row">
