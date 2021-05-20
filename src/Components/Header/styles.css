@@ -4,6 +4,11 @@ header {
   padding: 30px;
   height: 40px;
   background: rgb(34, 34, 34);
+  justify-content: space-between;
+}
+
+header strong {
+  color: #FFF;
 }
 
 header a {

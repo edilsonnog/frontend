@@ -1,18 +1,22 @@
 import React, { useContext } from 'react';
 
-import { AuthContext } from '../Context/AuthContext';
-
 import './styles.css';
+
+import { AuthContext } from '../Context/AuthContext';
 
 function Header() {
 
-    const context = useContext(AuthContext);
+    const { auth } = useContext(AuthContext);
 
     return (
         <header>
-            <a href="/login">Login</a>
-            <a href="/">Home</a>
-            <a href="/register">Cadastre-se</a>
+            <nav>
+                <a href="/login">Login</a>
+                <a href="/">Home</a>
+                <a href="/register">Cadastre-se</a>
+            </nav>
+
+          {auth.user &&  <strong>Seja bem vindo(a)!  {auth.user?.name}</strong>}
         </header>
     )
 }

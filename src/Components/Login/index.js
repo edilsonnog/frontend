@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 
-
-
 import "./styles.css";
+
+import { AuthContext } from '../Context/AuthContext';
 
 function Login() {
 
   const history = useHistory();
+  const { authentication } = useContext(AuthContext);
 
   const [usuario, setUsuario] = useState({});
 
@@ -20,10 +21,8 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    api.post('/session', usuario)
-    .then(() => {
-     // history.push("/");
-    });
+    authentication(usuario);
+    history.push("/");
   }
 
   return (
